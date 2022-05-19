@@ -1,32 +1,41 @@
-* {
-    box-sizing: border-box;
-}
-
-h4 {
-    background-color: lightblue;
+.todo {
+    background-color: #1ABC9C;
     text-align: center;
-}
-
-input {
-    margin: 0;
-    border: none;
-    border-radius: 0;
-    width: 75%;
-    padding: 10px;
-    float: left;
-    font-size: 16px;
-
-}
-
-.addBtn {
-    padding: 10px;
-    width: 25%;
-    background: lightblue;
     color: white;
-    float: left;
-    text-align: center;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    border-radius: 0;
+    font-size: 2rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+
+}
+
+body {
+    margin: 0;
+}
+
+.bottom-bar {
+    display: flex;
+    margin: 8px;
+}
+
+.textarea {
+    flex-grow: 2;
+    font-size: 2rem;
+    border-color: #1ABC9C;
+    border-radius: 5px;
+    margin-right: 8px;
+}
+
+button {
+    background-color: #1ABC9C;
+    border-width: 0px;
+    border-radius: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
