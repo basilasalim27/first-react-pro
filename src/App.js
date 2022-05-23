@@ -4,24 +4,27 @@ function App() {
   return (
     <div class="container">
       <div class="todo">My Todo App</div>
-      <div class="one">
-        <img src="https://img.icons8.com/ios/30/1ABC9C/unchecked-circle.png" /> Buy the groceries
+      <div class="first">
+        <div class="one">
+          <img src="https://img.icons8.com/ios/30/1ABC9C/unchecked-circle.png" class="image" /> Buy the groceries
+        </div>
+        <div class="one">
+          <img src="https://img.icons8.com/ios/30/1ABC9C/unchecked-circle.png" class="image" /> Get the items
+        </div>
+        <div class="one">
+          <img src="https://img.icons8.com/ios/30/1ABC9C/unchecked-circle.png" class="image" /> Push to Github
+        </div>
+        <div class="one"></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+
       </div>
-      <div class="two">
-        <img src="https://img.icons8.com/ios/30/1ABC9C/unchecked-circle.png" /> Get the items
-      </div>
-      <div class="three">
-        <img src="https://img.icons8.com/ios/30/1ABC9C/unchecked-circle.png" /> Push to Github
-      </div>
-      <div class="four"></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+
 
 
       <div class="bottom-bar">

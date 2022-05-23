@@ -13,6 +13,7 @@
     height: 100vh;
     justify-content: space-between;
 
+
 }
 
 body {
@@ -40,33 +41,18 @@ button {
     padding-left: 10px;
 }
 
-img {
-    padding-left: 10px;
-}
+.first {
+    display: flex;
+    flex-grow: 3;
+    flex-direction: column;
+    justify-content: space-between;
 
+
+}
 
 .one {
-    height: 1px;
-    font-size: 2rem;
-    align-items: center;
-}
-
-.two {
     background-color: gray;
     height: 1px;
     font-size: 2rem;
-    align-items: center;
-}
-
-.three {
-    background-color: gray;
-    height: 1px;
-    font-size: 2rem;
-    align-items: center;
-}
-
-.four {
-    background-color: gray;
-    height: 1px;
     align-items: center;
 }
