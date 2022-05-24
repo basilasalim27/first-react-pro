@@ -4,29 +4,17 @@ function App() {
   return (
     <div class="container">
       <div class="todo">My Todo App</div>
-      <div class="first">
-        <div class="one">
+      <div class="workspace">
+        <div class="list">
           <img src="https://img.icons8.com/ios/30/1ABC9C/unchecked-circle.png" class="image" /> Buy the groceries
         </div>
-        <div class="one">
+        <div class="list">
           <img src="https://img.icons8.com/ios/30/1ABC9C/unchecked-circle.png" class="image" /> Get the items
         </div>
-        <div class="one">
+        <div class="list">
           <img src="https://img.icons8.com/ios/30/1ABC9C/unchecked-circle.png" class="image" /> Push to Github
         </div>
-        <div class="one"></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-
       </div>
-
-
-
       <div class="bottom-bar">
         <input type="text" class="textarea" placeholder="Enter a todo"></input>
         <button>

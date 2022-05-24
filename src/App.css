@@ -12,8 +12,6 @@
     flex-direction: column;
     height: 100vh;
     justify-content: space-between;
-
-
 }
 
 body {
@@ -41,18 +39,22 @@ button {
     padding-left: 10px;
 }
 
-.first {
+.workspace {
     display: flex;
     flex-grow: 3;
     flex-direction: column;
-    justify-content: space-between;
-
-
 }
 
-.one {
-    background-color: gray;
-    height: 1px;
+.list {
     font-size: 2rem;
     align-items: center;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: gray;
+    padding: 10px;
+    display: flex;
+}
+
+.list>img {
+    margin-right: 16px;
 }
