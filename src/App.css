@@ -58,3 +58,7 @@ button {
 .list>img {
     margin-right: 16px;
 }
+
+.push {
+    text-decoration: line-through;
+}
