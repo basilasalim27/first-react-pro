@@ -1,29 +1,33 @@
 import './App.css';
-
 function App() {
-  const x = [true, true, false]
+  const todoItems = [{ taskId: 1, taskStatus: true, taskDescription: "Buy the groceries" }, { taskId: 2, taskStatus: false, taskDescription: "Push to Github" }]
+  function handleSubmitButtonClicked() {
+    alert("Hello! I am an alert box!");
+  }
   return (
-    <div class="container">
-      <div class="todo">My Todo App</div>
-      <div class="workspace"></div>
-      {x.map(item => {
-        if (item == true) {
-          return (<div class="list">
-            <img src="https://img.icons8.com/ios/30/1ABC9C/unchecked-circle.png" class="image" /> Buy the groceries
+    <div className="container">
+      <div className="todo">My Todo App</div>
+      <div className="workspace">
+        {todoItems.map(item => {
+          if (item.taskStatus) {
+            return (<div className="list" key={item.taskId}>
+              <img src="https://img.icons8.com/ios/30/1ABC9C/unchecked-circle.png" className="image" /> {item.taskDescription}
+            </div>)
+          }
+          return (<div className="list" key={item.taskId}>
+            <img src="https://img.icons8.com/fluency/34/000000/ok.png" className="image" /> <div className="task-description" key={item.taskId}> {item.taskDescription} </div>
           </div>)
+        })
         }
-        return (<div class="list">
-          <img src="https://img.icons8.com/fluency/34/000000/ok.png" class="image" /> <div class="push"> Push to Github </div>
-        </div>)
-      })
-      }
-      <div class="bottom-bar">
-        <input type="text" class="textarea" placeholder="Enter a todo"></input>
-        <button>
+      </div>
+      <div className="bottom-bar">
+        <input type="text" className="textarea" placeholder="Enter a todo"></input>
+        <button onClick={handleSubmitButtonClicked}>
           <img src="https://img.icons8.com/external-royyan-wijaya-detailed-outline-royyan-wijaya/24/ffffff/external-tick-interface-royyan-wijaya-detailed-outline-royyan-wijaya-4.png" />
         </button>
       </div>
     </div>
   );
 }
+
 export default App;
