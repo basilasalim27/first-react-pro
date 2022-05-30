@@ -62,3 +62,7 @@ button {
 .task-description {
     text-decoration: line-through;
 }
+
+.checked {
+    background-color: white;
+}

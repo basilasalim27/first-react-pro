@@ -4,6 +4,9 @@ function App() {
   function handleSubmitButtonClicked() {
     alert("Hello! I am an alert box!");
   }
+  function handleCheckedButtonClicked(taskId) {
+    alert(taskId)
+  }
   return (
     <div className="container">
       <div className="todo">My Todo App</div>
@@ -11,11 +14,13 @@ function App() {
         {todoItems.map(item => {
           if (item.taskStatus) {
             return (<div className="list" key={item.taskId}>
-              <img src="https://img.icons8.com/ios/30/1ABC9C/unchecked-circle.png" className="image" /> {item.taskDescription}
+              <button onClick={() => handleCheckedButtonClicked(item.taskId)} class="checked">
+                <img src="https://img.icons8.com/ios/30/1ABC9C/unchecked-circle.png" className="image" /> </button> {item.taskDescription}
             </div>)
           }
           return (<div className="list" key={item.taskId}>
-            <img src="https://img.icons8.com/fluency/34/000000/ok.png" className="image" /> <div className="task-description" key={item.taskId}> {item.taskDescription} </div>
+            <button onClick={() => handleCheckedButtonClicked(item.taskId)} class="checked">
+              <img src="https://img.icons8.com/fluency/34/000000/ok.png" className="image" /> </button> <div className="task-description" key={item.taskId}> {item.taskDescription} </div>
           </div>)
         })
         }
