@@ -66,3 +66,7 @@ button {
 .checked {
     background-color: white;
 }
+
+.deleted {
+    background-color: white;
+}
