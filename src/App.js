@@ -36,8 +36,7 @@ function App() {
 
   function handleCloseButton(taskId) {
     const newTodoItems = todoItems.filter(item => taskId != item.taskId)
-    todoItems.pop()
-    setTodoItems([...todoItems])
+    setTodoItems([...newTodoItems])
   }
 
   return (
