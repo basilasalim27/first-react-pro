@@ -7,9 +7,10 @@ function Apps() {
 
   return (
     <BrowserRouter>
-      <Signin />
+
       <Routes>
-        <Route path="/signin" element={<TodoApp />} />
+        <Route path="/" element={<TodoApp />} />
+        <Route path="/signin" element={<Signin />} />
       </Routes>
     </BrowserRouter>
   );
