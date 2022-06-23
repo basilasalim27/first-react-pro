@@ -4,8 +4,12 @@ import Signin from "./component/Signin/Signin";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function Apps() {
-
+  const shoot = () => {
+    alert("Great Shot!");
+  }
   return (
+
+
     <BrowserRouter>
 
       <Routes>
@@ -13,6 +17,8 @@ function Apps() {
         <Route path="/signin" element={<Signin />} />
       </Routes>
     </BrowserRouter>
+
+
   );
 }
 export default Apps;
