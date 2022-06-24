@@ -13,8 +13,8 @@ function Apps() {
     <BrowserRouter>
 
       <Routes>
-        <Route path="/" element={<TodoApp />} />
-        <Route path="/signin" element={<Signin />} />
+        <Route path="/TodoApp" element={<TodoApp />} />
+        <Route path="/" element={<Signin />} />
       </Routes>
     </BrowserRouter>
 
