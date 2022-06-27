@@ -1,23 +1,73 @@
 form {
     background-color: white;
-    width: 100%;
+    border: 0px;
+
+}
+
+.forms {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
     height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: linear-gradient(white, #01d28e, white);
+}
+
+.user,
+.pass {
+    height: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.button-container {
+    font-size: 15px;
+    background: #01d28e;
+    border: 0px;
+    padding: 10px 10px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
 }
 
-form a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.alert_button {
-    background-color: #1ABC9C;
-    border-width: 0px;
-    border-radius: 5px;
+.bttn {
+    background-color: #01d28e;
     padding-right: 10px;
     padding-left: 10px;
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 25px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+.input-container {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px;
+    height: 100px;
+    width: 200px;
+}
+
+.forgot-password {
+    display: flex;
+    align-self: auto;
+    color: blue;
+    font-size: small;
+
+}
+
+.signup {
+    display: flex;
+    align-self: auto;
+
+}
+
+.signup :hover {
+    color: brown;
 }

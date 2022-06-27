@@ -1,37 +1,51 @@
 import React, { useState } from 'react';
 import './Signin.css';
-import ReactDOM from 'react-dom/client';
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const Signin = () => {
+function Signin() {
     const [userid, setUserid] = useState("")
     const [password, setPassword] = useState("")
-    function test() {
+    const navigate = useNavigate();
+
+
+    function handleSigninButtonClicked() {
         if (userid == "admin" & password == "admin") {
-            return alert("User Id : " + userid + " , password : " + password);
+            navigate("/TodoApp")
         }
-        return alert("invalid user id and password")
+        else alert("invalid user id and password")
     }
+
     function handleUserid(e) {
         setUserid(e.target.value)
     }
+
     function handlePassword(e) {
         setPassword(e.target.value)
     }
-    return (
-        <form>
-            <label>User Id:
-                <input type="text" value={userid} onChange={handleUserid} className="user" ></input>
-            </label>
-            <br></br>
-            <label>Password:
-                <input type="password" value={password} onChange={handlePassword} className="pass" ></input>
-            </label>
-            <br></br>
-            <button onClick={test}>Sign in </button>
 
-        </form>
+    return (
+        <div className="forms">
+            <form>
+                <h1> Sign In</h1>
+                <div className="input-container">
+                    <label>Username </label>
+                    <input type="text" value={userid} onChange={handleUserid} className="user" required></input>
+                </div>
+                <div className="input-container">
+                    <label>Password </label>
+                    <input type="password" value={password} onChange={handlePassword} className="pass" required></input>
+                </div>
+                <div className="button-container">
+                    <button onClick={handleSigninButtonClicked} className="bttn">submit</button>
+                </div>
+            </form>
+            <div className='signup'>
+                <u>sign-up</u>
+            </div>
+            <div className='forgot-password'>
+                forgot password
+            </div>
+        </div>
     );
 };
 
