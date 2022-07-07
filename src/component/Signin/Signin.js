@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Signin.css';
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Signin() {
     const [userid, setUserid] = useState("")
@@ -12,7 +13,10 @@ function Signin() {
         if (userid == "admin" & password == "admin") {
             navigate("/TodoApp")
         }
-        else alert("invalid user id and password")
+        else if (userid == "" || password == "") {
+            alert("please fill all fields")
+        }
+        else alert("invalid user id or password")
     }
 
     function handleUserid(e) {
@@ -40,7 +44,7 @@ function Signin() {
                 </div>
             </form>
             <div className='signup'>
-                <u>sign-up</u>
+                <Link to="/Signup"><u>sign-up</u></Link>
             </div>
             <div className='forgot-password'>
                 forgot password

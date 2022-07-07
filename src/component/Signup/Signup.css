@@ -1,0 +1,50 @@
+.email,
+.psw,
+.psw-repeat {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+.email:focus,
+.psw:focus,
+.psw-repeat:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+.clearfix {
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    width: 100%;
+}
+
+.signupcontainer {
+    padding: 2cm;
+}
+
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+    float: left;
+    width: 50%;
+    cursor: pointer;
+}
+
+.signupbtn {
+    padding: 14px 20px;
+    background-color: #01d28e;
+    float: left;
+    width: 50%;
+    cursor: pointer;
+}
