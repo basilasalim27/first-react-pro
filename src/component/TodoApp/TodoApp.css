@@ -31,7 +31,7 @@ body {
     margin-right: 8px;
 }
 
-button {
+.btn {
     background-color: #1ABC9C;
     border-width: 0px;
     border-radius: 5px;
@@ -65,8 +65,14 @@ button {
 
 .checked {
     background-color: white;
+    border-width: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .deleted {
     background-color: white;
+    border-width: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
 }

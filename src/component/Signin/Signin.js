@@ -2,18 +2,16 @@ import React, { useState } from 'react';
 import './Signin.css';
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
 function Signin() {
     const [userid, setUserid] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate();
 
-
     function handleSigninButtonClicked() {
-        if (userid == "admin" & password == "admin") {
+        if (userid === "admin" & password === "admin") {
             navigate("/TodoApp")
         }
-        else if (userid == "" || password == "") {
+        else if (userid === "" || password === "") {
             alert("please fill all fields")
         }
         else alert("invalid user id or password")
@@ -29,8 +27,8 @@ function Signin() {
 
     return (
         <div className="forms">
-            <form>
-                <h1> Sign In</h1>
+            <form className='signin-form'>
+                <h1 className='head'> Sign In</h1>
                 <div className="input-container">
                     <label>Username </label>
                     <input type="text" value={userid} onChange={handleUserid} className="user" required></input>
@@ -44,7 +42,7 @@ function Signin() {
                 </div>
             </form>
             <div className='signup'>
-                <Link to="/Signup"><u>sign-up</u></Link>
+                <Link to="/Signup">sign-up</Link>
             </div>
             <div className='forgot-password'>
                 forgot password

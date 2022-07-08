@@ -7,10 +7,8 @@ function Signup() {
     const [repeat, setRepeat] = useState("")
     const navigate = useNavigate();
 
-
     function handleEmailid(e) {
         setEmailid(e.target.value)
-
     }
 
     function handlePword(e) {
@@ -35,37 +33,35 @@ function Signup() {
         else alert("Account Created")
     }
 
-
     return (
-        <form>
-            <div className="signupcontainer">
-                <h1>Sign Up</h1>
-                <p>Please fill in this form to create an account.</p>
-                <hr></hr>
+        <div className="signupcontainer">
+            <form className='signup-form'>
+                <h1 className='heading'>Sign Up</h1>
+                <p className='para'>Please fill in this form to create an account.</p>
                 <div className='elements'>
-                    <div className='element1'>
+                    <div className='element'>
                         <label><b>Email</b></label>
                         <input type="text" placeholder="Enter Email" value={emailid} onChange={handleEmailid} className="email" required></input>
                     </div>
 
-                    <div className='element2'>
+                    <div className='element'>
                         <label><b>Password</b></label>
                         <input type="password" placeholder="Enter Password" value={pword} onChange={handlePword} className="psw" required></input>
                     </div>
 
-                    <div className='element3'>
+                    <div className='element'>
                         <label><b>Repeat Password</b></label>
                         <input type="password" placeholder="Repeat Password" value={repeat} onChange={handleRepeat} className="psw-repeat" required></input>
                     </div>
-
 
                     <div className="clearfix">
                         <button onClick={handleCancelButtonClicked} className="cancelbtn">Cancel</button>
                         <button onClick={handleSignupButtonClicked} className="signupbtn">Sign Up</button>
                     </div>
                 </div >
-            </div >
-        </form>
+            </form>
+        </div>
+
     );
 };
 

@@ -65,7 +65,7 @@ function App() {
             </div>
             <div className="bottom-bar">
                 <input type="text" value={taskDescription} onChange={handleDescriptionChanged} className="textarea" placeholder="Enter a todo"></input>
-                <button onClick={handleSubmitButtonClicked}>
+                <button onClick={handleSubmitButtonClicked} className="btn">
                     <img src="https://img.icons8.com/external-royyan-wijaya-detailed-outline-royyan-wijaya/24/ffffff/external-tick-interface-royyan-wijaya-detailed-outline-royyan-wijaya-4.png" />
                 </button>
             </div>
