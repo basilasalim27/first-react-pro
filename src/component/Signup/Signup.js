@@ -1,11 +1,27 @@
 import React, { useState } from 'react';
 import './Signup.css';
 import { useNavigate } from "react-router-dom";
+import firebaseConfig from "../config/config";
 function Signup() {
     const [emailid, setEmailid] = useState("")
     const [pword, setPword] = useState("")
     const [repeat, setRepeat] = useState("")
     const navigate = useNavigate();
+    const [currentUser, setCurrentUser] = useState(null);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const { email, password } = e.target.elements;
+        try {
+            firebaseConfig.auth().createUserWithEmailAndPassword(email.value, password.value);
+            setCurrentUser(true);
+        } catch (error) {
+            alert(error);
+        }
+    };
+
+    if (currentUser) {
+        return <Redirect to="/dashboard" />;
+    }
 
     function handleEmailid(e) {
         setEmailid(e.target.value)
