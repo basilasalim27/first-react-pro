@@ -1,27 +1,26 @@
 import React, { useState } from 'react';
 import './Signup.css';
 import { useNavigate } from "react-router-dom";
-import firebaseConfig from "../config/config";
+import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+const config = {
+    apiKey: "AIzaSyA9Hgtt5E76SW9g4qAR2xcDquQVB77tOu8",
+    authDomain: "todoapp-cdfe1.firebaseapp.com",
+    projectId: "todoapp-cdfe1",
+    storageBucket: "todoapp-cdfe1.appspot.com",
+    messagingSenderId: "991355025591",
+    appId: "1:991355025591:web:5b36f53f9d40a3313bb532"
+}
+
+const firebaseApp = initializeApp(config)
+const auth = getAuth(firebaseApp);
+
+
 function Signup() {
     const [emailid, setEmailid] = useState("")
     const [pword, setPword] = useState("")
     const [repeat, setRepeat] = useState("")
     const navigate = useNavigate();
-    const [currentUser, setCurrentUser] = useState(null);
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const { email, password } = e.target.elements;
-        try {
-            firebaseConfig.auth().createUserWithEmailAndPassword(email.value, password.value);
-            setCurrentUser(true);
-        } catch (error) {
-            alert(error);
-        }
-    };
-
-    if (currentUser) {
-        return <Redirect to="/dashboard" />;
-    }
 
     function handleEmailid(e) {
         setEmailid(e.target.value)
@@ -46,7 +45,17 @@ function Signup() {
         else if (pword !== repeat) {
             alert("Password does not match")
         }
-        else alert("Account Created")
+        else {
+            alert("welcome")
+            createUserWithEmailAndPassword(auth, emailid, pword)
+                .then((user) => {
+                    console.log(user);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+
+        }
     }
 
     return (
