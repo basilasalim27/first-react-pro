@@ -38,7 +38,8 @@ function Signup() {
         navigate("/")
     }
 
-    function handleSignupButtonClicked() {
+    async function handleSignupButtonClicked(e) {
+        e.preventDefault()
         if (emailid === "" || pword === "" || repeat === "") {
             alert("please fill all fields")
         }
@@ -46,14 +47,25 @@ function Signup() {
             alert("Password does not match")
         }
         else {
-            alert("welcome")
-            createUserWithEmailAndPassword(auth, emailid, pword)
-                .then((user) => {
-                    console.log(user);
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
+
+            try {
+                const user = await createUserWithEmailAndPassword(auth, emailid, pword)
+                console.log(user);
+            }
+            catch (error) {
+                if (error.code === "auth/email-already-in-use") {
+                    alert("Email already in use")
+                }
+                else if (error.code === "auth/weak-password") {
+                    alert("Weak Password")
+                }
+                else {
+                    alert("Unknown Error")
+                }
+
+                console.log(error);
+            }
+
 
         }
     }
