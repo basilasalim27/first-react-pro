@@ -2,19 +2,36 @@ import React, { useState } from 'react';
 import './Signin.css';
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import auth from '../Auth';
+import { signInWithEmailAndPassword } from "firebase/auth";
+
 function Signin() {
     const [userid, setUserid] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate();
 
-    function handleSigninButtonClicked() {
-        if (userid === "admin" & password === "admin") {
-            navigate("/TodoApp")
-        }
-        else if (userid === "" || password === "") {
+    async function handleSigninButtonClicked(e) {
+        e.preventDefault()
+
+        if (userid === "" || password === "") {
             alert("please fill all fields")
         }
-        else alert("invalid user id or password")
+        else {
+            try {
+                const user = await signInWithEmailAndPassword(auth, userid, password)
+                console.log(user);
+                alert("success")
+            }
+            catch (error) {
+                if (error.code === "auth/user-not-found") {
+                    alert("User not found")
+                }
+                else if (error.code === "auth/wrong-password") {
+                    alert("Worng Password")
+                }
+                console.log(error);
+            }
+        }
     }
 
     function handleUserid(e) {
@@ -30,8 +47,8 @@ function Signin() {
             <form className='signin-form'>
                 <h1 className='head'> Sign In</h1>
                 <div className="input-container">
-                    <label>Username </label>
-                    <input type="text" value={userid} onChange={handleUserid} className="user" required></input>
+                    <label>Email Id </label>
+                    <input type="email" value={userid} onChange={handleUserid} className="user" required></input>
                 </div>
                 <div className="input-container">
                     <label>Password </label>
