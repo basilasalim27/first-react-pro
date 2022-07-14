@@ -20,7 +20,7 @@ function Signin() {
             try {
                 const user = await signInWithEmailAndPassword(auth, userid, password)
                 console.log(user);
-                alert("success")
+                navigate("/TodoApp")
             }
             catch (error) {
                 if (error.code === "auth/user-not-found") {
