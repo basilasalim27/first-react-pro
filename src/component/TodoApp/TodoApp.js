@@ -1,13 +1,26 @@
 import './TodoApp.css';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+
 
 function App() {
     //const todoItems = []
     const [todoItems, setTodoItems] = useState([])
     const [taskDescription, setTaskDescription] = useState("")
-
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const navigate = useNavigate();
     //const todoItems = state[0]
     //const setTodoItems = state[1]
+    console.log("app started");
+    useEffect(() => {
+        if (user === null) {
+            navigate("/")
+        } else {
+        }
+    }, [])
+
     function handleSubmitButtonClicked() {
         let heighest = 0
         for (const i of todoItems) {
@@ -24,7 +37,8 @@ function App() {
     }
 
     function handleCheckedButtonClicked(taskId) {
-        todoItems[taskId - 1].taskStatus = !todoItems[taskId - 1].taskStatus
+        const index = todoItems.findIndex(item => item.taskId == taskId)
+        todoItems[index].taskStatus = !todoItems[index].taskStatus
         //const index = todoItems.findIndex(item => item.taskId == taskId)
         setTodoItems([...todoItems])
     }
@@ -35,7 +49,7 @@ function App() {
     }
 
     function handleCloseButton(taskId) {
-        const newTodoItems = todoItems.filter(item => taskId != item.taskId)
+        const newTodoItems = todoItems.filter(item => taskId !== item.taskId)
         setTodoItems([...newTodoItems])
     }
 
