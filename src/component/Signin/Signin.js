@@ -3,7 +3,7 @@ import './Signin.css';
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import auth from '../Auth';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, browserLocalPersistence, setPersistence } from "firebase/auth";
 
 function Signin() {
     const [userid, setUserid] = useState("")
@@ -20,6 +20,7 @@ function Signin() {
             try {
                 const user = await signInWithEmailAndPassword(auth, userid, password)
                 console.log(user);
+                await setPersistence(auth, browserLocalPersistence)
                 navigate("/TodoApp")
             }
             catch (error) {

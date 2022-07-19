@@ -15,10 +15,11 @@ function App() {
     //const setTodoItems = state[1]
     console.log("app started");
     useEffect(() => {
-        if (user === null) {
-            navigate("/")
-        } else {
-        }
+        auth.onAuthStateChanged((user) => {
+            if (user === null) {
+                navigate("/")
+            }
+        })
     }, [])
 
     function handleSubmitButtonClicked() {
