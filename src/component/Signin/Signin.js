@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Signin.css';
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import auth from '../Auth';
+import { auth } from '../Auth';
 import { signInWithEmailAndPassword, browserLocalPersistence, setPersistence } from "firebase/auth";
 
 function Signin() {
     const [userid, setUserid] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate();
+    // useeffect : this fun runs when component created , currently [] (empty array) passed to the fun to run the fun at the inital time only 
+    useEffect(() => {
+        auth.onAuthStateChanged((user) => {
+            if (user !== null) {
+                navigate("/TodoApp")
+            }
+        })
+    }, [])
+    // }, [userid]) -> the usereffect is run when the user id change 
+
+
 
     async function handleSigninButtonClicked(e) {
         e.preventDefault()
@@ -19,6 +30,7 @@ function Signin() {
         else {
             try {
                 const user = await signInWithEmailAndPassword(auth, userid, password)
+                // console.log(user.user.uid);
                 console.log(user);
                 await setPersistence(auth, browserLocalPersistence)
                 navigate("/TodoApp")
@@ -36,7 +48,7 @@ function Signin() {
     }
 
     function handleUserid(e) {
-        setUserid(e.target.value)
+        setUserid(e.target.value) //here userid changes
     }
 
     function handlePassword(e) {

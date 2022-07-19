@@ -2,6 +2,8 @@ import './TodoApp.css';
 import { useState, useEffect } from 'react'
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from '../Auth';
 
 
 function App() {
@@ -19,22 +21,39 @@ function App() {
             if (user === null) {
                 navigate("/")
             }
+            else {
+                console.log(user);
+                console.log(user.uid);
+            }
         })
     }, [])
 
-    function handleSubmitButtonClicked() {
-        let heighest = 0
-        for (const i of todoItems) {
-            heighest = i.taskId
+    async function handleSubmitButtonClicked() {
+
+        try {
+            //const docRef = await addDoc(collection(db, "user"), { to get user as collection name
+            const docRef = await addDoc(collection(db, user.uid), { // to get uid as collection name
+                discription: taskDescription,
+                status: true
+            });
+            console.log("Document written with ID: ", docRef.id);
+
+            let heighest = 0
+            for (const i of todoItems) {
+                heighest = i.taskId
+            }
+
+            const todoItem = {
+                taskId: heighest + 1,
+                taskStatus: true,
+                taskDescription: taskDescription
+            }
+            todoItems.push(todoItem)
+            setTodoItems([...todoItems])
+            setTaskDescription("")
+        } catch (e) {
+            console.error("Error adding document: ", e);
         }
-        const todoItem = {
-            taskId: heighest + 1,
-            taskStatus: true,
-            taskDescription: taskDescription
-        }
-        todoItems.push(todoItem)
-        setTodoItems([...todoItems])
-        setTaskDescription("")
     }
 
     function handleCheckedButtonClicked(taskId) {
