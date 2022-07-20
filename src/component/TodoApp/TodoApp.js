@@ -4,6 +4,7 @@ import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from '../Auth';
+import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 
 
 function App() {
@@ -33,34 +34,51 @@ function App() {
         try {
             //const docRef = await addDoc(collection(db, "user"), { to get user as collection name
             const docRef = await addDoc(collection(db, user.uid), { // to get uid as collection name
-                discription: taskDescription,
-                status: true
+                taskDescription: taskDescription,
+                taskStatus: true
             });
-            console.log("Document written with ID: ", docRef.id);
 
-            let heighest = 0
-            for (const i of todoItems) {
-                heighest = i.taskId
-            }
+            console.log("Document written with ID: ", docRef.id); // ref id of document
+
 
             const todoItem = {
-                taskId: heighest + 1,
+                taskId: docRef.id, //setting taskId as ref id of document
                 taskStatus: true,
                 taskDescription: taskDescription
             }
+
+            console.log("task id :", todoItem.taskId);
+
             todoItems.push(todoItem)
             setTodoItems([...todoItems])
             setTaskDescription("")
+
+            console.log("after setting taskId to document ref, todoItems: ", todoItems);
+            console.log("after setting taskId to document ref, taskDescription: ", taskDescription);
+
+
+
+
         } catch (e) {
             console.error("Error adding document: ", e);
         }
     }
 
-    function handleCheckedButtonClicked(taskId) {
-        const index = todoItems.findIndex(item => item.taskId == taskId)
-        todoItems[index].taskStatus = !todoItems[index].taskStatus
-        //const index = todoItems.findIndex(item => item.taskId == taskId)
-        setTodoItems([...todoItems])
+    async function handleCheckedButtonClicked(taskId) {
+
+        try {
+            const checkingRef = doc(db, user.uid, taskId);
+            await updateDoc(checkingRef, {
+                taskStatus: false
+            });
+
+            const index = todoItems.findIndex(item => item.taskId == taskId)
+            todoItems[index].taskStatus = !todoItems[index].taskStatus
+            //const index = todoItems.findIndex(item => item.taskId == taskId)
+            setTodoItems([...todoItems])
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     function handleDescriptionChanged(e) {
@@ -68,9 +86,15 @@ function App() {
         //console.log("enter", e.target.value);
     }
 
-    function handleCloseButton(taskId) {
-        const newTodoItems = todoItems.filter(item => taskId !== item.taskId)
-        setTodoItems([...newTodoItems])
+    async function handleCloseButton(taskId) {
+        try {
+            await deleteDoc(doc(db, user.uid, taskId)); //Delete documents (path:- /user.uid/docref.id(taskId))
+            const newTodoItems = todoItems.filter(item => taskId !== item.taskId)
+            setTodoItems([...newTodoItems])
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
