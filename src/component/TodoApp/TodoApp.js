@@ -4,7 +4,8 @@ import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from '../Auth';
-import { doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { doc, deleteDoc, updateDoc, getDocs } from "firebase/firestore";
+
 
 
 function App() {
@@ -17,14 +18,26 @@ function App() {
     //const todoItems = state[0]
     //const setTodoItems = state[1]
     console.log("app started");
-    useEffect(() => {
-        auth.onAuthStateChanged((user) => {
+    useEffect(() => {   //initial call
+        auth.onAuthStateChanged(async (user) => { //async for lamda fun
             if (user === null) {
                 navigate("/")
             }
             else {
                 console.log(user);
                 console.log(user.uid);
+                const querySnapshot = await getDocs(collection(db, user.uid));
+                querySnapshot.forEach((doc) => {
+                    // doc.data() is never undefined for query doc snapshots
+
+                    console.log(doc.id, " => ", doc.data());
+                    todoItems.push({
+                        taskId: doc.id,
+                        taskStatus: doc.data().taskStatus,
+                        taskDescription: doc.data().taskDescription
+                    })
+                    setTodoItems([...todoItems])
+                });
             }
         })
     }, [])
@@ -50,7 +63,7 @@ function App() {
             console.log("task id :", todoItem.taskId);
 
             todoItems.push(todoItem)
-            setTodoItems([...todoItems])
+            setTodoItems([...todoItems]) //to avoid same memmory issue (...) (vere location il kondpoyi ettitt aa location il ninn aayirikkum evide kond poyi edane)
             setTaskDescription("")
 
             console.log("after setting taskId to document ref, todoItems: ", todoItems);
@@ -67,13 +80,16 @@ function App() {
     async function handleCheckedButtonClicked(taskId) {
 
         try {
+            const index = todoItems.findIndex(item => item.taskId == taskId) //find the index of the todoitem with id = given id
             const checkingRef = doc(db, user.uid, taskId);
-            await updateDoc(checkingRef, {
-                taskStatus: false
+            const newStatus = !todoItems[index].taskStatus
+            await updateDoc(checkingRef, { //to update document //await - database call
+                // taskStatus: !todoItems[index].taskStatus //  true = !true
+                taskStatus: newStatus
             });
 
-            const index = todoItems.findIndex(item => item.taskId == taskId)
-            todoItems[index].taskStatus = !todoItems[index].taskStatus
+
+            todoItems[index].taskStatus = newStatus //togling(not)
             //const index = todoItems.findIndex(item => item.taskId == taskId)
             setTodoItems([...todoItems])
         } catch (error) {
@@ -97,9 +113,29 @@ function App() {
         }
     }
 
+    async function handlelogoutButtonClicked() {
+        try {
+            await auth.signOut(); //for signed out
+            console.log("signed out");
+        } catch (error) {
+            // an error
+            console.log(error);
+        }
+        //console.log("logout button clicked");
+    }
+
+
+
+
+
+
     return (
         <div className="container">
-            <div className="todo">My Todo App</div>
+            <div className="todo"> My Todo App </div> <div className="logoutbtn">
+                <button onClick={handlelogoutButtonClicked} className="logout">
+                    <img src="https://img.icons8.com/material-outlined/40/FFFFFF/shutdown--v1.png" />
+                </button>
+            </div>
             <div className="workspace">
                 {todoItems.map(item => {
                     if (item.taskStatus) {

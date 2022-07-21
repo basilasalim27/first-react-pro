@@ -5,6 +5,26 @@
     font-size: 2rem;
     padding-top: 8px;
     padding-bottom: 8px;
+
+}
+
+.logoutbtn {
+    position: absolute;
+    right: 20px;
+    top: 7px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.5;
+}
+
+.logoutbtn:hover {
+    opacity: 1;
+}
+
+.logout {
+    background-color: #1ABC9C;
+    border-width: 0px;
+
 }
 
 .container {
@@ -53,10 +73,6 @@ body {
     border-bottom-color: gray;
     padding: 10px;
     display: flex;
-}
-
-.list>img {
-    margin-right: 16px;
 }
 
 .task-description {
