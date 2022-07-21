@@ -5,7 +5,6 @@
     font-size: 2rem;
     padding-top: 8px;
     padding-bottom: 8px;
-
 }
 
 .logoutbtn {
@@ -24,7 +23,6 @@
 .logout {
     background-color: #1ABC9C;
     border-width: 0px;
-
 }
 
 .container {
@@ -57,6 +55,7 @@ body {
     border-radius: 5px;
     padding-right: 10px;
     padding-left: 10px;
+    cursor: pointer;
 }
 
 .workspace {

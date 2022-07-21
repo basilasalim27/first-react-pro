@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Signup.css';
 import { useNavigate } from "react-router-dom";
-
 import { auth } from '../Auth';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
@@ -11,15 +10,15 @@ function Signup() {
     const [repeat, setRepeat] = useState("")
     const navigate = useNavigate();
 
-    function handleEmailid(e) {
+    function handleEmailid(e) { //email id changes
         setEmailid(e.target.value)
     }
 
-    function handlePword(e) {
+    function handlePword(e) { //password changes
         setPword(e.target.value)
     }
 
-    function handleRepeat(e) {
+    function handleRepeat(e) { //conform password changes
         setRepeat(e.target.value)
     }
 
@@ -38,7 +37,7 @@ function Signup() {
         else {
 
             try {
-                const user = await createUserWithEmailAndPassword(auth, emailid, pword)
+                const user = await createUserWithEmailAndPassword(auth, emailid, pword) //for authentication
                 console.log(user);
             }
             catch (error) {
@@ -54,8 +53,6 @@ function Signup() {
 
                 console.log(error);
             }
-
-
         }
     }
 
