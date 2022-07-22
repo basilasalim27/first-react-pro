@@ -26,6 +26,7 @@ function Signin() {
 
         if (userid === "" || password === "") {
             alert("please fill all fields")
+            //} else if(regex - regular expression (email))
         }
         else {
             try {
@@ -41,6 +42,9 @@ function Signin() {
                 }
                 else if (error.code === "auth/wrong-password") { //"auth/wrong-password" - error name
                     alert("Worng Password")
+                }
+                else if (error.code === "auth/invalid-email") {
+                    alert("invalid email")
                 }
                 console.log(error);
             }
@@ -61,6 +65,7 @@ function Signin() {
                 <h1 className='head'> Sign In</h1>
                 <div className="input-container">
                     <label>Email Id </label>
+                    {/* type=emai (for mobile key board)*/}
                     <input type="email" value={userid} onChange={handleUserid} className="user" required></input> {/* value evide set cheydh kodukkunnath aan*/}
                 </div>
                 <div className="input-container">
