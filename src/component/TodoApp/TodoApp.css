@@ -1,0 +1,93 @@
+.todo {
+    background-color: #1ABC9C;
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.logoutbtn {
+    position: absolute;
+    right: 20px;
+    top: 7px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.5;
+}
+
+.logoutbtn:hover {
+    opacity: 1;
+}
+
+.logout {
+    background-color: #1ABC9C;
+    border-width: 0px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+}
+
+body {
+    margin: 0;
+}
+
+.bottom-bar {
+    display: flex;
+    margin: 8px;
+}
+
+.textarea {
+    flex-grow: 2;
+    font-size: 2rem;
+    border-color: #1ABC9C;
+    border-radius: 5px;
+    margin-right: 8px;
+}
+
+.btn {
+    background-color: #1ABC9C;
+    border-width: 0px;
+    border-radius: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.workspace {
+    display: flex;
+    flex-grow: 3;
+    flex-direction: column;
+}
+
+.list {
+    font-size: 2rem;
+    align-items: center;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: gray;
+    padding: 10px;
+    display: flex;
+}
+
+.task-description {
+    text-decoration: line-through;
+}
+
+.checked {
+    background-color: white;
+    border-width: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.deleted {
+    background-color: white;
+    border-width: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
