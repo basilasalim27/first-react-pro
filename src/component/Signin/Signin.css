@@ -60,15 +60,13 @@
     align-self: auto;
     color: blue;
     font-size: small;
-    padding-top: 25px;
-
+    margin-top: 25px;
 }
 
 .signup {
     display: flex;
     align-self: auto;
     margin-top: 20px;
-
 }
 
 .signup :hover {
